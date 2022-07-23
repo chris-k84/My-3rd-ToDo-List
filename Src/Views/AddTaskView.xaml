@@ -1,0 +1,42 @@
+﻿<Window x:Class="Src.Views.AddTaskView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Src.Views"
+        xmlns:tvm="clr-namespace:Src.ViewModels"
+        mc:Ignorable="d"
+        Title="AddTaskView" Height="300" Width="400"
+        SizeToContent="Height">
+    <Window.Resources>
+        <tvm:AddTaskViewModel x:Key="atvm"/>
+    </Window.Resources>
+    <Grid x:Name="grid" DataContext="{StaticResource atvm}">
+        <StackPanel DataContext="{Binding NewTask}">
+            <TextBlock Text="Name:"/>
+            <TextBox x:Name="name"
+                     Margin="0,0,0,5"
+                     Text="{Binding Title}"/>
+            <TextBlock Text="Description:"/>
+            <TextBox x:Name="description"
+                     Margin="0,0,0,5"
+                     Text="{Binding Description}"/>
+            <TextBlock Text="Comments:"/>
+            <TextBox x:Name="comments"
+                     Margin="0,0,0,5"
+                     Text="{Binding Comments}"/>
+            <TextBlock Text="Priority"/>
+            <TextBox x:Name="priority"
+                     Margin="0,0,0,5"
+                     Text="{Binding Priority}"/>
+            <TextBlock Text="Due Date"/>
+            <DatePicker SelectedDate="2022-01-01"
+                     Margin="0,0,0,5 "
+                     x:Name="duedate"/>
+            <Button Content="Save"
+                    DataContext="{StaticResource atvm}"
+                    Command="{Binding saveNewTask}"/>
+            <Button x:Name="test1"/>
+        </StackPanel>
+    </Grid>
+</Window>

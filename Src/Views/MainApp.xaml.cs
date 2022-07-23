@@ -10,19 +10,24 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Src.ViewModels;
 
-namespace Src
+namespace Src.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MainApp.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainApp : Window
     {
-        public MainWindow()
+        MainWindowViewModel viewModel;
+        public MainApp()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            viewModel = grid.DataContext as MainWindowViewModel;
+
+            taskList.MouseDoubleClick += viewModel.TaskListDoubleClick;
         }
     }
 }

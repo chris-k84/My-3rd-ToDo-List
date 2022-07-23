@@ -1,0 +1,38 @@
+﻿<Window x:Class="Src.Views.MainApp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Src.Views"
+        xmlns:mvm="clr-namespace:Src.ViewModels"
+        xmlns:uc="clr-namespace:Src.Controls"
+        mc:Ignorable="d"
+        Title="MainApp" Height="800" Width="400"
+        SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <mvm:MainWindowViewModel x:Key="vm"/>
+    </Window.Resources>
+    <Grid x:Name="grid" DataContext="{StaticResource vm}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <TextBlock Text="Task List"/>
+            <ListView x:Name="taskList"
+                      ItemsSource="{Binding Tasks}"
+                      SelectedItem="{Binding SelectedTask}"
+                      MaxHeight="600">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <uc:TaskControl Task="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Content="Add Task"
+                    Command="{Binding NewTask}"/>
+            <Button Content="Delete Task"
+                    Command="{Binding DeleteTask}"/>
+        </StackPanel>
+    </Grid>
+</Window>
