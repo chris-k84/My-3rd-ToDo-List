@@ -8,33 +8,29 @@
         mc:Ignorable="d"
         Title="AddTaskView" Height="300" Width="400"
         SizeToContent="Height">
-    <Window.Resources>
-        <tvm:AddTaskViewModel x:Key="atvm"/>
-    </Window.Resources>
-    <Grid x:Name="grid" DataContext="{StaticResource atvm}">
-        <StackPanel DataContext="{Binding NewTask}">
+    <Grid x:Name="grid">
+        <StackPanel>
             <TextBlock Text="Name:"/>
             <TextBox x:Name="name"
                      Margin="0,0,0,5"
-                     Text="{Binding Title}"/>
+                     Text="{Binding NewTask.Title}"/>
             <TextBlock Text="Description:"/>
             <TextBox x:Name="description"
                      Margin="0,0,0,5"
-                     Text="{Binding Description}"/>
+                     Text="{Binding NewTask.Description}"/>
             <TextBlock Text="Comments:"/>
             <TextBox x:Name="comments"
                      Margin="0,0,0,5"
-                     Text="{Binding Comments}"/>
+                     Text="{Binding NewTask.Comments}"/>
             <TextBlock Text="Priority"/>
             <TextBox x:Name="priority"
                      Margin="0,0,0,5"
-                     Text="{Binding Priority}"/>
+                     Text="{Binding NewTask.Priority}"/>
             <TextBlock Text="Due Date"/>
             <DatePicker SelectedDate="2022-01-01"
                      Margin="0,0,0,5 "
                      x:Name="duedate"/>
             <Button Content="Save"
-                    DataContext="{StaticResource atvm}"
                     Command="{Binding saveNewTask}"/>
             <Button x:Name="test1"/>
         </StackPanel>

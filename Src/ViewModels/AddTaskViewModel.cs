@@ -13,7 +13,6 @@ namespace Src.ViewModels
 {
     public class AddTaskViewModel
     {
-        private static int instances = 0;
         public SaveNewTaskCommand saveNewTask { get; set; }
 
         public UserTask NewTask { get; set; }
@@ -22,8 +21,6 @@ namespace Src.ViewModels
         {
             saveNewTask = new SaveNewTaskCommand(this);
             NewTask = new UserTask();
-
-            instances++;
         }
 
         public void SaveTask()
