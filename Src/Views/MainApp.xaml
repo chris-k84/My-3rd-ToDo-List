@@ -16,7 +16,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
-
         <StackPanel>
             <TextBlock Text="Task List"/>
             <ListView x:Name="taskList"
@@ -33,6 +32,13 @@
                     Command="{Binding NewTask}"/>
             <Button Content="Delete Task"
                     Command="{Binding DeleteTask}"/>
+            <RadioButton x:Name="ListByPrioity">
+                Priority
+            </RadioButton>
+            <RadioButton IsChecked="True"
+                         x:Name="ListByName">
+                Name
+            </RadioButton>
         </StackPanel>
     </Grid>
 </Window>

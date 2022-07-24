@@ -10,6 +10,7 @@ using System.Windows.Input;
 using Src.Models;
 using Src.ViewModels.Commands;
 using Src.Views;
+using System.Windows;
 
 namespace Src.ViewModels
 {
@@ -59,5 +60,44 @@ namespace Src.ViewModels
             taskEdit.ShowDialog();
             ReadTaskDatabase();
         }
+
+        public void ListByName_Checked(object sender, RoutedEventArgs e)
+        {
+            List<UserTask> list = new List<UserTask>();
+            using (SQLiteConnection newConnection = new SQLiteConnection(App.databasePath))
+            {
+                newConnection.CreateTable<UserTask>();
+                list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.Title).ToList();
+            }
+            Tasks.Clear();
+            foreach (UserTask ut in list)
+            {
+                if (ut.ProjectId == 0)
+                {
+                    Tasks.Add(ut);
+                }
+
+            }
+        } //TODO refactor this into ReadTaskDatabase function
+
+        public void ListByPrioity_Checked(object sender, RoutedEventArgs e)
+        {
+            List<UserTask> list = new List<UserTask>();
+            using (SQLiteConnection newConnection = new SQLiteConnection(App.databasePath))
+            {
+                newConnection.CreateTable<UserTask>();
+                list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.Priority).ToList();
+            }
+            Tasks.Clear();
+            foreach (UserTask ut in list)
+            {
+                if (ut.ProjectId == 0)
+                {
+                    Tasks.Add(ut);
+                }
+
+            }
+        } //TODO refactor this into ReadTaskDatabase function
+
     }
 }

@@ -28,6 +28,8 @@ namespace Src.Views
             viewModel = grid.DataContext as MainWindowViewModel;
 
             taskList.MouseDoubleClick += viewModel.TaskListDoubleClick;
+            ListByName.Checked += viewModel.ListByName_Checked;
+            ListByPrioity.Checked += viewModel.ListByPrioity_Checked;
         }
     }
 }

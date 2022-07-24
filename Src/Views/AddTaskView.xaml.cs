@@ -36,7 +36,6 @@ namespace Src.Views
             Loaded += OnWindowLoaded;
         }
     
-
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             if(AddTaskViewModel != null)
