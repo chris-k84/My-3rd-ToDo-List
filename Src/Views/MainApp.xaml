@@ -7,14 +7,14 @@
         xmlns:mvm="clr-namespace:Src.ViewModels"
         xmlns:uc="clr-namespace:Src.Controls"
         mc:Ignorable="d"
-        Title="MainApp" Width="400"
+        Title="MainApp" Width="420"
         SizeToContent="WidthAndHeight">
     <Window.Resources>
         <mvm:MainWindowViewModel x:Key="vm"/>
     </Window.Resources>
     <Grid x:Name="grid" DataContext="{StaticResource vm}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="420"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
             <TextBlock Text="Task List"/>
