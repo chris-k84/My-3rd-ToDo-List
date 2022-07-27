@@ -66,9 +66,12 @@ namespace Src.ViewModels
 
         public void TaskListDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            TaskEditWindow taskEdit = new TaskEditWindow(SelectedTask);
-            taskEdit.ShowDialog();
-            ReadTaskDatabase();
+            if (SelectedTask != null)
+            {
+                TaskEditWindow taskEdit = new TaskEditWindow(SelectedTask);
+                taskEdit.ShowDialog();
+                ReadTaskDatabase();
+            }
         }
 
         public void ListByName_Checked(object sender, RoutedEventArgs e)
