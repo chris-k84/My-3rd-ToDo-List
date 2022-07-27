@@ -7,7 +7,7 @@
         xmlns:mvm="clr-namespace:Src.ViewModels"
         xmlns:uc="clr-namespace:Src.Controls"
         mc:Ignorable="d"
-        Title="MainApp" Height="800" Width="400"
+        Title="MainApp" Width="400"
         SizeToContent="WidthAndHeight">
     <Window.Resources>
         <mvm:MainWindowViewModel x:Key="vm"/>

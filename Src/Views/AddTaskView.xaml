@@ -32,7 +32,6 @@
                      x:Name="duedate"/>
             <Button Content="Save"
                     Command="{Binding saveNewTask}"/>
-            <Button x:Name="test1"/>
         </StackPanel>
     </Grid>
 </Window>
