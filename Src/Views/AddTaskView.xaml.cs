@@ -34,6 +34,7 @@ namespace Src.Views
             DataContext = AddTaskViewModel;
 
             Loaded += OnWindowLoaded;
+            duedate.SelectedDate = DateTime.Today;
         }
     
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
