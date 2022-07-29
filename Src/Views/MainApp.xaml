@@ -51,7 +51,7 @@
                       MaxHeight="600">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <uc:TaskControl Task="{Binding}"/>
+                        <uc:ProjectControl Project="{Binding}"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
