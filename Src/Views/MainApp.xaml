@@ -7,14 +7,15 @@
         xmlns:mvm="clr-namespace:Src.ViewModels"
         xmlns:uc="clr-namespace:Src.Controls"
         mc:Ignorable="d"
-        Title="MainApp" Width="420"
+        Title="MainApp" Width="820"
         SizeToContent="WidthAndHeight">
     <Window.Resources>
         <mvm:MainWindowViewModel x:Key="vm"/>
     </Window.Resources>
     <Grid x:Name="grid" DataContext="{StaticResource vm}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="420"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
             <TextBlock Text="Task List"/>
@@ -29,9 +30,11 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Button Content="Add Task"
-                    Command="{Binding NewTask}"/>
+                    Command="{Binding NewTask}"
+                    Style="{StaticResource Button1}"/>
             <Button Content="Delete Task"
-                    Command="{Binding DeleteTask}"/>
+                    Command="{Binding DeleteTask}"
+                    Style="{StaticResource Button1}"/>
             <RadioButton x:Name="ListByPrioity">
                 Priority
             </RadioButton>
@@ -39,6 +42,25 @@
                          x:Name="ListByName">
                 Name
             </RadioButton>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <TextBlock Text="Project List"/>
+            <ListView x:Name="projectList"
+                      ItemsSource="{Binding Tasks}"
+                      SelectedItem="{Binding SelectedTask}"
+                      MaxHeight="600">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <uc:TaskControl Task="{Binding}"/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Content="Add Project"
+                    Command="{Binding NewTask}"
+                    Style="{StaticResource Button2}"/>
+            <Button Content="Delete Project"
+                    Command="{Binding DeleteTask}"
+                    Style="{StaticResource Button2}"/>
         </StackPanel>
     </Grid>
 </Window>
