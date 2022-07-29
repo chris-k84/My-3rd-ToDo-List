@@ -17,17 +17,14 @@ namespace Src.ViewModels
     public class MainWindowViewModel
     {
         public ObservableCollection<UserTask> Tasks { get; set; }
-
+        public ObservableCollection<UserProject> Projects { get; set; }
         public UserTask SelectedTask { get; set; }
-
+        public UserProject SelectedProject { get; set; }
         public NewTaskCommand NewTask { get; set; }
-
         public DeleteTaskCommand DeleteTask { get; set; }
-
         public SetCompleteCommand SetComplete { get; set; }
 
         private bool listByPrio = false;
-
         public MainWindowViewModel()
         {
             NewTask = new NewTaskCommand(this);
@@ -36,7 +33,6 @@ namespace Src.ViewModels
             SetComplete = new SetCompleteCommand();
             ReadTaskDatabase();
         }
-
         public void ReadTaskDatabase()
         {
             List<UserTask> list = new List<UserTask>();
@@ -63,7 +59,6 @@ namespace Src.ViewModels
 
             }
         }
-
         public void TaskListDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (SelectedTask != null)
@@ -73,13 +68,11 @@ namespace Src.ViewModels
                 ReadTaskDatabase();
             }
         }
-
         public void ListByName_Checked(object sender, RoutedEventArgs e)
         {
             listByPrio = false;
             ReadTaskDatabase();
         }
-
         public void ListByPrioity_Checked(object sender, RoutedEventArgs e)
         {
             listByPrio = true;

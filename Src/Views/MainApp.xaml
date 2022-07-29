@@ -46,8 +46,8 @@
         <StackPanel Grid.Column="1">
             <TextBlock Text="Project List"/>
             <ListView x:Name="projectList"
-                      ItemsSource="{Binding Tasks}"
-                      SelectedItem="{Binding SelectedTask}"
+                      ItemsSource="{Binding Projects}"
+                      SelectedItem="{Binding SelectedProject}"
                       MaxHeight="600">
                 <ListView.ItemTemplate>
                     <DataTemplate>
