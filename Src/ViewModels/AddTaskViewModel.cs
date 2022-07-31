@@ -21,6 +21,7 @@ namespace Src.ViewModels
         {
             saveNewTask = new SaveNewTaskCommand(this);
             NewTask = new UserTask();
+            NewTask.DueTime = DateTime.Now;
         }
 
         public void SaveTask()

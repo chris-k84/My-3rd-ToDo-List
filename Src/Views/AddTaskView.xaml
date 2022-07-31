@@ -28,7 +28,8 @@
                      Text="{Binding NewTask.Priority}"/>
             <TextBlock Text="Due Date"/>
             <DatePicker Margin="0,0,0,5 "
-                     x:Name="duedate"/>
+                     x:Name="duedate"
+                     SelectedDate="{Binding NewTask.DueTime}"/>
             <Button Content="Save"
                     Command="{Binding saveNewTask}"/>
         </StackPanel>
