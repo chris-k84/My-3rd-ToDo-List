@@ -39,6 +39,9 @@
                          x:Name="ListByName">
                 Name
             </RadioButton>
+            <RadioButton x:Name="ListByDueDate">
+                DueDate
+            </RadioButton>
         </StackPanel>
     </Grid>
 </Window>

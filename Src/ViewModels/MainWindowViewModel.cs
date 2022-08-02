@@ -26,7 +26,7 @@ namespace Src.ViewModels
 
         public SetCompleteCommand SetComplete { get; set; }
 
-        private bool listByPrio = false;
+        private int listBy = 0;
 
         public MainWindowViewModel()
         {
@@ -43,13 +43,19 @@ namespace Src.ViewModels
             using (SQLiteConnection newConnection = new SQLiteConnection(App.databasePath))
             {
                 newConnection.CreateTable<UserTask>();
-                if (listByPrio)
+                switch (listBy)
                 {
-                    list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.Priority).ToList();
-                }
-                else
-                {
-                    list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.Title).ToList();
+                    case 0:
+                        list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.Priority).ToList();
+                        break;
+
+                    case 1:
+                        list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.Title).ToList();
+                        break;
+
+                    default:
+                        list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.DueTime).ToList();
+                        break;
                 }
                 
             }
@@ -76,14 +82,20 @@ namespace Src.ViewModels
 
         public void ListByName_Checked(object sender, RoutedEventArgs e)
         {
-            listByPrio = false;
+            listBy = 1;
             ReadTaskDatabase();
         }
 
         public void ListByPrioity_Checked(object sender, RoutedEventArgs e)
         {
-            listByPrio = true;
+            listBy = 0;
             ReadTaskDatabase();
-        } 
+        }
+
+        public void ListByDueDate_Checked(object sender, RoutedEventArgs e)
+        {
+            listBy = 2;
+            ReadTaskDatabase();
+        }
     }
 }

@@ -30,6 +30,7 @@ namespace Src.Views
             taskList.MouseDoubleClick += viewModel.TaskListDoubleClick;
             ListByName.Checked += viewModel.ListByName_Checked;
             ListByPrioity.Checked += viewModel.ListByPrioity_Checked;
+            ListByDueDate.Checked += viewModel.ListByDueDate_Checked;
         }
     }
 }
