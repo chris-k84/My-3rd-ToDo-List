@@ -17,6 +17,7 @@ namespace Src.ViewModels
     public interface IDataBaseReader
     {
         void ReadTaskDatabase();
+        UserTask SelectedTask { get; set; }
     }
     public class MainWindowViewModel : IDataBaseReader
     {
@@ -61,7 +62,6 @@ namespace Src.ViewModels
                         list = newConnection.Table<UserTask>().ToList().OrderBy(c => c.DueTime).ToList();
                         break;
                 }
-                
             }
             Tasks.Clear();
             foreach(UserTask ut in list)

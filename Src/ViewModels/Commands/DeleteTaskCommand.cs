@@ -12,11 +12,11 @@ namespace Src.ViewModels.Commands
 {
     public class DeleteTaskCommand : ICommand
     {
-        private MainWindowViewModel MWVM;
+        private IDataBaseReader dataBaseReader;
 
-        public DeleteTaskCommand(MainWindowViewModel mwvm) 
+        public DeleteTaskCommand(IDataBaseReader DataBaseReader) 
         {
-            MWVM = mwvm;
+            this.dataBaseReader = DataBaseReader;
         }
         public event EventHandler CanExecuteChanged;
 
@@ -29,16 +29,16 @@ namespace Src.ViewModels.Commands
         {
             DeleteTaskCheckView deleteTaskCheckView = new DeleteTaskCheckView();
             deleteTaskCheckView.ShowDialog();
-            if(MWVM.SelectedTask != null)
+            if(dataBaseReader.SelectedTask != null)
             {
                 using (SQLiteConnection sQLiteConnection = new SQLiteConnection(App.databasePath))
                 {
                     sQLiteConnection.CreateTable<UserTask>();
 
-                    sQLiteConnection.Delete(MWVM.SelectedTask);
+                    sQLiteConnection.Delete(dataBaseReader.SelectedTask);
                 }
             }
-            MWVM.ReadTaskDatabase();
+            dataBaseReader.ReadTaskDatabase();
         }
     }
 }
