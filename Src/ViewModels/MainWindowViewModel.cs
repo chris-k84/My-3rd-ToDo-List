@@ -14,7 +14,11 @@ using System.Windows;
 
 namespace Src.ViewModels
 {
-    public class MainWindowViewModel
+    public interface IDataBaseReader
+    {
+        void ReadTaskDatabase();
+    }
+    public class MainWindowViewModel : IDataBaseReader
     {
         public ObservableCollection<UserTask> Tasks { get; set; }
 
@@ -33,7 +37,7 @@ namespace Src.ViewModels
             NewTask = new NewTaskCommand(this);
             Tasks = new ObservableCollection<UserTask>();
             DeleteTask = new DeleteTaskCommand(this);
-            SetComplete = new SetCompleteCommand();
+            SetComplete = new SetCompleteCommand(this);
             ReadTaskDatabase();
         }
 

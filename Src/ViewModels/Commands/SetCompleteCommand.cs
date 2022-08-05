@@ -11,10 +11,10 @@ namespace Src.ViewModels.Commands
 {
     public class SetCompleteCommand : ICommand
     {
-
-        public SetCompleteCommand()
+        private IDataBaseReader dataBaseReader;
+        public SetCompleteCommand(IDataBaseReader DataBaseReader)
         {
-
+            this.dataBaseReader = DataBaseReader;
         }
 
         public event EventHandler CanExecuteChanged;
@@ -32,8 +32,9 @@ namespace Src.ViewModels.Commands
             {
                 sQLiteConnection.CreateTable<UserTask>();
 
-                sQLiteConnection.Update(task);
+                sQLiteConnection.Delete(task);
             }
+            this.dataBaseReader.ReadTaskDatabase();
         }
     }
 }
