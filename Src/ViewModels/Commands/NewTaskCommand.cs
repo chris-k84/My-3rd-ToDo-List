@@ -10,11 +10,11 @@ namespace Src.ViewModels.Commands
 {
     public class NewTaskCommand : ICommand
     {
-        private MainWindowViewModel MWVM { get; set; }
+        private IDataBaseReader dataBaseReader;
 
-        public NewTaskCommand(MainWindowViewModel mwvm) 
+        public NewTaskCommand(IDataBaseReader DataBaseReader) 
         {
-            MWVM = mwvm;
+            this.dataBaseReader = DataBaseReader;
         }
         public event EventHandler CanExecuteChanged;
 
@@ -27,7 +27,7 @@ namespace Src.ViewModels.Commands
         {
             AddTaskView tv = new AddTaskView();
             tv.ShowDialog();
-            MWVM.ReadTaskDatabase();
+            dataBaseReader.ReadTaskDatabase();
         }
     }
 }
