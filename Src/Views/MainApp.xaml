@@ -29,7 +29,7 @@
                 </ListView.ItemTemplate>
             </ListView>
             <Button Content="Add Task"
-                    Command="{Binding NewTask}"/>
+                    Command="{Binding AddNewTask}"/>
             <Button Content="Delete Task"
                     Command="{Binding DeleteTask}"/>
             <RadioButton x:Name="ListByPrioity">

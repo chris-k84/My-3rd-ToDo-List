@@ -19,13 +19,14 @@ namespace Src.ViewModels
         void ReadTaskDatabase();
         UserTask SelectedTask { get; set; }
     }
-    public class MainWindowViewModel : IDataBaseReader
+    class MainWindowViewModel : IDataBaseReader
     {
         public ObservableCollection<UserTask> Tasks { get; set; }
 
         public UserTask SelectedTask { get; set; }
 
         public NewTaskCommand NewTask { get; set; }
+        public RelayCommand AddNewTask {get; set; }
 
         public DeleteTaskCommand DeleteTask { get; set; }
 
@@ -36,9 +37,17 @@ namespace Src.ViewModels
         public MainWindowViewModel()
         {
             NewTask = new NewTaskCommand(this);
+            AddNewTask = new RelayCommand(AddNewTaskCommand);
             Tasks = new ObservableCollection<UserTask>();
             DeleteTask = new DeleteTaskCommand(this);
             SetComplete = new SetCompleteCommand(this);
+            ReadTaskDatabase();
+        }
+
+        public void AddNewTaskCommand(object parameter)
+        {
+            AddTaskView tv = new AddTaskView();
+            tv.ShowDialog();
             ReadTaskDatabase();
         }
 
