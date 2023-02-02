@@ -31,7 +31,7 @@
             <Button Content="Add Task"
                     Command="{Binding AddNewTask}"/>
             <Button Content="Delete Task"
-                    Command="{Binding DeleteTask}"/>
+                    Command="{Binding DeleteSelectedTask}"/>
             <RadioButton x:Name="ListByPrioity">
                 Priority
             </RadioButton>

@@ -24,23 +24,20 @@ namespace Src.ViewModels
         public ObservableCollection<UserTask> Tasks { get; set; }
 
         public UserTask SelectedTask { get; set; }
-
-        public NewTaskCommand NewTask { get; set; }
         public RelayCommand AddNewTask {get; set; }
 
-        public DeleteTaskCommand DeleteTask { get; set; }
+        public RelayCommand DeleteSelectedTask { get; set; }
 
-        public SetCompleteCommand SetComplete { get; set; }
+        public RelayCommand SetTaskComplete { get; set; }
 
         private int listBy = 0;
 
         public MainWindowViewModel()
         {
-            NewTask = new NewTaskCommand(this);
             AddNewTask = new RelayCommand(AddNewTaskCommand);
             Tasks = new ObservableCollection<UserTask>();
-            DeleteTask = new DeleteTaskCommand(this);
-            SetComplete = new SetCompleteCommand(this);
+            DeleteSelectedTask = new RelayCommand(DeleteSelectedTaskCommand);
+            SetTaskComplete = new RelayCommand(SetTaskCompleteCommand);
             ReadTaskDatabase();
         }
 
@@ -50,7 +47,33 @@ namespace Src.ViewModels
             tv.ShowDialog();
             ReadTaskDatabase();
         }
+        public void DeleteSelectedTaskCommand(object parameter)
+        {
+            DeleteTaskCheckView deleteTaskCheckView = new DeleteTaskCheckView();
+            deleteTaskCheckView.ShowDialog();
+            if (SelectedTask != null)
+            {
+                using (SQLiteConnection sQLiteConnection = new SQLiteConnection(App.databasePath))
+                {
+                    sQLiteConnection.CreateTable<UserTask>();
 
+                    sQLiteConnection.Delete(SelectedTask);
+                }
+            }
+            ReadTaskDatabase();
+        }
+        public void SetTaskCompleteCommand(object parameter)
+        {
+            UserTask task = parameter as UserTask;
+            task.IsComplete = true;
+            using (SQLiteConnection sQLiteConnection = new SQLiteConnection(App.databasePath))
+            {
+                sQLiteConnection.CreateTable<UserTask>();
+
+                sQLiteConnection.Delete(task);
+            }
+            ReadTaskDatabase();
+        }
         public void ReadTaskDatabase()
         {
             List<UserTask> list = new List<UserTask>();
@@ -82,7 +105,6 @@ namespace Src.ViewModels
 
             }
         }
-
         public void TaskListDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (SelectedTask != null)
@@ -92,19 +114,16 @@ namespace Src.ViewModels
                 ReadTaskDatabase();
             }
         }
-
         public void ListByName_Checked(object sender, RoutedEventArgs e)
         {
             listBy = 1;
             ReadTaskDatabase();
         }
-
         public void ListByPrioity_Checked(object sender, RoutedEventArgs e)
         {
             listBy = 0;
             ReadTaskDatabase();
         }
-
         public void ListByDueDate_Checked(object sender, RoutedEventArgs e)
         {
             listBy = 2;
