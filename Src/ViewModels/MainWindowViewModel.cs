@@ -14,22 +14,13 @@ using System.Windows;
 
 namespace Src.ViewModels
 {
-    public interface IDataBaseReader
-    {
-        void ReadTaskDatabase();
-        UserTask SelectedTask { get; set; }
-    }
-    class MainWindowViewModel : IDataBaseReader
+    class MainWindowViewModel
     {
         public ObservableCollection<UserTask> Tasks { get; set; }
-
         public UserTask SelectedTask { get; set; }
         public RelayCommand AddNewTask {get; set; }
-
         public RelayCommand DeleteSelectedTask { get; set; }
-
         public RelayCommand SetTaskComplete { get; set; }
-
         private int listBy = 0;
 
         public MainWindowViewModel()
