@@ -13,18 +13,18 @@ namespace Src.ViewModels
 {
     public class AddTaskViewModel
     {
-        public SaveNewTaskCommand saveNewTask { get; set; }
+        public RelayCommand saveNewTask { get; set; }
 
         public UserTask NewTask { get; set; }
 
         public AddTaskViewModel()
         {
-            saveNewTask = new SaveNewTaskCommand(this);
+            saveNewTask = new RelayCommand(SaveTask);
             NewTask = new UserTask();
             NewTask.DueTime = DateTime.Now;
         }
 
-        public void SaveTask()
+        public void SaveTask(object parameter)
         {
             SQLiteHelper.AddTaskToDB(NewTask);
 

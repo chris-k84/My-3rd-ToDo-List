@@ -17,12 +17,12 @@ namespace Src.ViewModels
         public TaskEditViewModel(UserTask userTask)
         {
             UserTask = userTask;
-            UpdateTaskCommand = new UpdateTaskCommand(this);
+            UpdateTaskCommand = new RelayCommand(UpdateTask);
         }
 
-        public UpdateTaskCommand UpdateTaskCommand { get; set; }
+        public RelayCommand UpdateTaskCommand { get; set; }
 
-        public void UpdateTask()
+        public void UpdateTask(object parameter)
         {
 
             SQLiteHelper.UpdateTaskInDB(UserTask);

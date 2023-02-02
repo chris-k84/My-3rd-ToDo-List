@@ -32,7 +32,7 @@
                        FontStyle="Italic"/>
                 <CheckBox Grid.Column="1"
                           x:Name="iscomplete"
-                          Command="{Binding DataContext.SetComplete, RelativeSource={RelativeSource AncestorType=ListView}}"
+                          Command="{Binding DataContext.SetTaskComplete, RelativeSource={RelativeSource AncestorType=ListView}}"
                           CommandParameter="{Binding}"
                           HorizontalAlignment="Right"/>
             </Grid>
