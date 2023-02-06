@@ -7,61 +7,67 @@
         xmlns:mvm="clr-namespace:Src.ViewModels"
         xmlns:uc="clr-namespace:Src.Controls"
         mc:Ignorable="d"
-        Title="MainApp" Width="420"
-        SizeToContent="WidthAndHeight">
+        Title="MainWindow" Height="600" Width="420"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="true">
     <Window.Resources>
         <mvm:MainWindowViewModel x:Key="vm"/>
     </Window.Resources>
-    <Grid x:Name="grid" DataContext="{StaticResource vm}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition Width="320"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="1">
-            <RadioButton Content="Home"
+    <Border Background="#272537"
+            CornerRadius="20">
+        <Grid x:Name="grid" DataContext="{StaticResource vm}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="1">
+                <RadioButton Content="Home"
                              Height=" 50"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              IsChecked="True"/>
-            <RadioButton Content="EtherCAT"
+                <RadioButton Content="EtherCAT"
                              Height=" 50"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"/>
-            <RadioButton Content="ADS"
+                <RadioButton Content="ADS"
                              Height=" 50"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"/>
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1">
-            <TextBlock Text="Task List"/>
-            <ListView x:Name="taskList"
+            </StackPanel>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="Task List"/>
+                <ListView x:Name="taskList"
                       ItemsSource="{Binding Tasks}"
                       SelectedItem="{Binding SelectedTask}"
                       MaxHeight="600">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <uc:TaskControl Task="{Binding}"/>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button Content="Add Task"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <uc:TaskControl Task="{Binding}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Button Content="Add Task"
                     Command="{Binding AddNewTask}"/>
-            <Button Content="Delete Task"
+                <Button Content="Delete Task"
                     Command="{Binding DeleteSelectedTask}"/>
-            <RadioButton x:Name="ListByPrioity">
-                Priority
-            </RadioButton>
-            <RadioButton IsChecked="True"
+                <RadioButton x:Name="ListByPrioity">
+                    Priority
+                </RadioButton>
+                <RadioButton IsChecked="True"
                          x:Name="ListByName">
-                Name
-            </RadioButton>
-            <RadioButton x:Name="ListByDueDate">
-                DueDate
-            </RadioButton>
-        </StackPanel>
-    </Grid>
+                    Name
+                </RadioButton>
+                <RadioButton x:Name="ListByDueDate">
+                    DueDate
+                </RadioButton>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
