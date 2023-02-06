@@ -14,9 +14,29 @@
     </Window.Resources>
     <Grid x:Name="grid" DataContext="{StaticResource vm}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="420"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="320"/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="1">
+            <RadioButton Content="Home"
+                             Height=" 50"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"/>
+            <RadioButton Content="EtherCAT"
+                             Height=" 50"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+            <RadioButton Content="ADS"
+                             Height=" 50"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
             <TextBlock Text="Task List"/>
             <ListView x:Name="taskList"
                       ItemsSource="{Binding Tasks}"
